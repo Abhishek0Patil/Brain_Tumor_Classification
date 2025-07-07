@@ -109,7 +109,7 @@ _(Replace the above link with your actual shared Google Drive link)_
 
 ### ✅ Test Results
 
-```bash
+
 ================ Model Performance Summary ================
 
 Model: VGG19
@@ -133,7 +133,8 @@ Test Accuracy   : 89.64%
 Test Loss       : 0.2136
 
 ===========================================================
-'''
+
+---
 
 ## 🖼️ User Interface
 
