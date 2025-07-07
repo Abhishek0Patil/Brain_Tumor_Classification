@@ -133,4 +133,11 @@ Test Accuracy   : 89.64%
 Test Loss       : 0.2136
 
 ===========================================================
+'''
+
+## 🖼️ User Interface
+
+Here is a sample screenshot of the application's front-end interface:
+
+![Brain Tumor Classifier UI](images/ui_screenshot.png)
 
