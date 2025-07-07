@@ -81,13 +81,13 @@ Each model follows this structure:
 
 ## 📁 Folder Structure
 
--├── app/ # Django or Streamlit App (Optional UI)
--├── models/ # Trained model weights (.keras files)
--├── dataset/ # Image dataset (not uploaded due to size)
--├── notebooks/ # Jupyter Notebooks for training & evaluation
--├── utils/ # Helper functions and preprocessing
--├── requirements.txt # Python dependencies
--└── README.md # Project documentation
+- app/ # Django or Streamlit App (Optional UI)
+- models/ # Trained model weights (.keras files)
+- dataset/ # Image dataset (not uploaded due to size)
+- notebooks/ # Jupyter Notebooks for training & evaluation
+- utils/ # Helper functions and preprocessing
+- requirements.txt # Python dependencies
+- README.md # Project documentation
 
 ---
 
