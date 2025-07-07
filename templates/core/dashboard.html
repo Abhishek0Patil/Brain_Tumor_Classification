@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-8">Dashboard</h1>
+
+    <!-- Upload Section -->
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
+        <h2 class="text-2xl font-bold mb-6">Upload MRI Scan</h2>
+        <form method="post" enctype="multipart/form-data" id="upload-form" class="space-y-4">
+            {% csrf_token %}
+            <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                <input type="file" name="image" id="image-upload" class="hidden" accept="image/*" required>
+                <label for="image-upload" class="cursor-pointer">
+                    <div id="upload-area" class="space-y-2">
+                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <div class="text-sm text-gray-600">
+                            Click to upload or drag and drop<br>
+                            MRI scan image (PNG, JPG)
+                        </div>
+                    </div>
+                    <img id="image-preview" class="mt-4 mx-auto max-h-96 hidden" alt="Uploaded MRI Scan">
+                </label>
+            </div>
+            <button type="submit" class="w-full bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90">
+                Analyze Scan
+            </button>
+        </form>
+    </div>
+
+    <!-- Current Scan Result Section -->
+    <div id="current-result" class="bg-white rounded-2xl shadow-lg p-6 mb-8 hidden">
+        <h2 class="text-2xl font-bold mb-6">Current Scan Result</h2>
+        <div class="flex items-center space-x-4">
+            <img id="current-scan-image" src="" alt="Current Scan" class="w-32 h-32 object-cover rounded-lg">
+            <div>
+                <p class="font-semibold">File: <span id="current-filename"></span></p>
+                <p>Result: <span id="current-result-text" class="font-semibold"></span></p>
+                <p class="text-sm text-gray-500">Uploaded: <span id="current-upload-time"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Message Section -->
+    <div id="error-message" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-8 hidden" role="alert">
+        <strong class="font-bold">Error!</strong>
+        <span class="block sm:inline" id="error-text"></span>
+    </div>
+</div>
+
+<script>
+    // Image preview
+    const imageUpload = document.getElementById('image-upload');
+    const imagePreview = document.getElementById('image-preview');
+    const uploadArea = document.getElementById('upload-area');
+
+    imageUpload.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imagePreview.src = e.target.result;
+                imagePreview.classList.remove('hidden');
+                uploadArea.classList.add('hidden');
+            }
+            reader.readAsDataURL(file);
+            
+            // Clear the current result when a new file is selected
+            document.getElementById('current-result').classList.add('hidden');
+        }
+    });
+
+    // Show current scan result
+    const form = document.getElementById('upload-form');
+    const currentResult = document.getElementById('current-result');
+    const currentScanImage = document.getElementById('current-scan-image');
+    const currentFilename = document.getElementById('current-filename');
+    const currentResultText = document.getElementById('current-result-text');
+    const currentUploadTime = document.getElementById('current-upload-time');
+    const errorMessage = document.getElementById('error-message');
+    const errorText = document.getElementById('error-text');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+
+        // Hide any previous error messages
+        errorMessage.classList.add('hidden');
+
+        fetch('{% url "dashboard" %}', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken': '{{ csrf_token }}'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Update current scan result
+                currentScanImage.src = data.image_url;
+                currentFilename.textContent = data.filename;
+                currentResultText.textContent = data.result ? 'Tumor Detected' : 'No Tumor Detected';
+                currentResultText.className = data.result ? 'text-red-500 font-semibold' : 'text-green-500 font-semibold';
+                currentUploadTime.textContent = data.upload_time;
+                currentResult.classList.remove('hidden');
+
+                // Clear the form and reset the upload area
+                form.reset();
+                imagePreview.classList.add('hidden');
+                uploadArea.classList.remove('hidden');
+            } else {
+                throw new Error(data.error || 'An unknown error occurred');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            errorText.textContent = error.message || 'An error occurred. Please try again.';
+            errorMessage.classList.remove('hidden');
+        });
+    });
+</script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

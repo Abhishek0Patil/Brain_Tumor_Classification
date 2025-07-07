@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="relative overflow-hidden">
+  <!-- Decorative Elements -->
+  <div class="absolute top-20 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+  
+  <!-- Hero Section -->
+  <div class="container mx-auto px-4 py-12 md:py-24">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+          <!-- Left Column - Text Content -->
+          <div class="relative">
+              <!-- Wavy Decoration -->
+              <div class="absolute -top-8 right-0">
+                  <svg class="w-24 h-24 text-primary/20" viewBox="0 0 100 100">
+                      <path d="M0,50 C20,30 30,70 50,50 C70,30 80,70 100,50" stroke="currentColor" fill="none" stroke-width="4"/>
+                  </svg>
+              </div>
+
+              <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                  Get Quick<br>
+                  <span class="text-primary">Brain Tumor Detection</span>
+              </h1>
+              
+              <p class="text-gray-600 mb-8 max-w-lg">
+                  Our advanced AI-powered system provides quick and accurate brain tumor detection from MRI scans. Using cutting-edge machine learning technology, we help medical professionals make informed decisions faster.
+              </p>
+
+              <a href="{% url 'dashboard' %}" class="inline-block bg-primary text-white px-8 py-3 rounded-full hover:bg-primary/90 transition-colors">
+                  Get Started
+              </a>
+
+          </div>
+
+          <!-- Right Column - Doctor Image -->
+          <div class="relative hidden md:block">
+              <img 
+                  src="{% static 'images/doctor.png' %}" 
+                  alt="Professional Doctor" 
+                  class="w-full h-auto object-contain"
+                  style="max-height: 600px; transform: translateX(-14%) translateY(-8%);"
+              >
+              
+              <!-- Stats Card -->
+              <div class="absolute top-1/4 left-0 bg-white shadow-lg rounded-xl p-4">
+                  <div class="flex items-center gap-3">
+                      <div class="bg-primary/10 p-2 rounded-full">
+                          <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                          </svg>
+                      </div>
+                      <div>
+                        <div class="text-sm ">User-friendly interface</div>
+                      </div>
+                  </div>
+              </div>
+              
+              <!-- Features Card -->
+              <div class="absolute bottom-1/4 right-6 bg-white shadow-lg rounded-xl p-4">
+                  <div class="space-y-2">
+                      <div class="flex items-center gap-2">
+                          <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                          </svg>
+                          <span>Good Accuracy Rate</span>
+                      </div>
+                      <div class="flex items-center gap-2">
+                          <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                          </svg>
+                          <span>Reliable Model</span>
+                      </div>
+                  </div>
+              </div>
+
+
+                <!-- Dot Pattern -->
+                <div class="absolute -right-8 bottom-0 text-primary/20">
+                    <div class="grid grid-cols-3 gap-2">
+                        {% for i in "123456789" %}
+                        <div class="w-2 h-2 rounded-full bg-current"></div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <!-- About Section -->
+    <div id="about" class="container mx-auto px-4 py-16 md:py-24">
+        <div class="max-w-3xl mx-auto text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">About Our Technology</h2>
+            <p class="text-gray-600">
+                Our brain tumor detection system uses state-of-the-art deep learning algorithms to analyze MRI scans with exceptional accuracy. We're committed to helping healthcare professionals provide faster and more accurate diagnoses for their patients.
+            </p>
+        </div>
+
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Meet Our Team</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <!-- Team Member 1 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="p-4">
+                <h3 class="text-lg font-semibold mb-1">Mr. Nagaraj Rao</h3>
+                <p class="text-sm text-gray-600 mb-2">Associate Professor</p>
+                <p class="text-xs text-gray-500">Artificial Intelligence and Data Science</p>
+            </div>
+        </div>
+
+        <!-- Team Member 2 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="p-4">
+                <h3 class="text-lg font-semibold mb-1">Abhishek</h3>
+                <p class="text-sm text-gray-600 mb-2">Final Year Student</p>
+                <p class="text-xs text-gray-500">Artificial Intelligence and Machine Learning</p>
+            </div>
+        </div>
+
+        <!-- Team Member 3 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="p-4">
+                <h3 class="text-lg font-semibold mb-1">Abhishek Patil</h3>
+                <p class="text-sm text-gray-600 mb-2">Final Year Student</p>
+                <p class="text-xs text-gray-500">Artificial Intelligence and Machine Learning</p>
+            </div>
+        </div>
+
+        <!-- Team Member 4 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="p-4">
+                <h3 class="text-lg font-semibold mb-1">C Akash Rao</h3>
+                <p class="text-sm text-gray-600 mb-2">Final Year Student</p>
+                <p class="text-xs text-gray-500">Artificial Intelligence and Machine Learning</p>
+            </div>
+        </div>
+
+        <!-- Team Member 5 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="p-4">
+                <h3 class="text-lg font-semibold mb-1">K Aheesh Madhyastha</h3>
+                <p class="text-sm text-gray-600 mb-2">Final Year Student</p>
+                <p class="text-xs text-gray-500">Artificial Intelligence and Machine Learning</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+

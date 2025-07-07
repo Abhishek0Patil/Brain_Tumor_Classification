@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Tumor Classifier</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#10B981',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-white border-b">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="{% url 'home' %}" class="text-2xl font-bold">NeuroVision AI</a>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="{% url 'home' %}" class="nav-link text-gray-600 hover:text-primary" data-target="home">Home</a>
+                    <a href="{% url 'home' %}#about" class="nav-link text-gray-600 hover:text-primary" data-target="about">About Us</a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'dashboard' %}" class="nav-link text-gray-600 hover:text-primary" data-target="dashboard">Dashboard</a>
+                        <a href="{% url 'profile' %}" class="nav-link text-gray-600 hover:text-primary" data-target="profile">Profile</a>
+                        <form action="{% url 'logout' %}" method="post" class="inline">
+                            {% csrf_token %}
+                            <button type="submit" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary/90">Logout</button>
+                        </form>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary/90">Login</a>
+                    {% endif %}
+                </div>
+
+                <!-- Mobile Navigation Toggle -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <a href="{% url 'home' %}" class="nav-link block py-2 text-gray-600" data-target="home">Home</a>
+                <a href="{% url 'home' %}#about" class="nav-link block py-2 text-gray-600" data-target="about">About Us</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'dashboard' %}" class="nav-link block py-2 text-gray-600" data-target="dashboard">Dashboard</a>
+                    <a href="{% url 'profile' %}" class="nav-link block py-2 text-gray-600" data-target="profile">Profile</a>
+                    <form action="{% url 'logout' %}" method="post" class="inline">
+                        {% csrf_token %}
+                        <button type="submit" class="block w-full text-left py-2 text-primary font-semibold">Logout</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="block py-2 text-primary font-semibold">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Messages Section -->
+    {% if messages %}
+    <div class="container mx-auto px-4 py-4">
+        {% for message in messages %}
+        <div class="{% if message.tags %}{{ message.tags }}{% endif %} border px-4 py-3 rounded relative mb-4" role="alert">
+            <span class="block sm:inline">{{ message }}</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Handle navigation link clicks
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                navLinks.forEach(l => l.classList.remove('text-primary'));
+                this.classList.add('text-primary');
+                localStorage.setItem('activeNav', this.dataset.target);
+            });
+        });
+
+        // Set active link on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const activeNav = localStorage.getItem('activeNav');
+            if (activeNav) {
+                const activeLink = document.querySelector(`.nav-link[data-target="${activeNav}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('text-primary');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

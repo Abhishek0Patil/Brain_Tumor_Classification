@@ -1,0 +1,19 @@
+# Web Framework
+Django==4.2.7
+
+# Image Processing
+opencv-python==4.8.1.78
+imutils==0.5.4
+
+# Machine Learning
+tensorflow==2.16.1
+numpy==1.26.2
+
+# Utilities
+Pillow==10.1.0
+python-dateutil==2.8.2
+pytz==2023.3.post1
+
+# Development
+django-debug-toolbar==4.2.0
+
