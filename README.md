@@ -95,8 +95,7 @@ Each model follows this structure:
 
 > Due to the large file size, trained models are hosted on Google Drive:
 
-📁 **[Download Models from Google Drive]([https://drive.google.com/drive/folders/1WadpidHjSGjMDVxhiJixVe7djxRIPFHv?usp=drive_link])**  
-_(Replace the above link with your actual shared Google Drive link)_
+📁 **[Download Models from Google Drive](https://drive.google.com/drive/folders/1WadpidHjSGjMDVxhiJixVe7djxRIPFHv?usp=drive_link)**  
 
 ---
 
