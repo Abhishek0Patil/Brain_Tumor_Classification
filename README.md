@@ -81,3 +81,56 @@ Each model follows this structure:
 
 ## 📁 Folder Structure
 
+├── app/ # Django or Streamlit App (Optional UI)
+├── models/ # Trained model weights (.keras files)
+├── dataset/ # Image dataset (not uploaded due to size)
+├── notebooks/ # Jupyter Notebooks for training & evaluation
+├── utils/ # Helper functions and preprocessing
+├── requirements.txt # Python dependencies
+└── README.md # Project documentation
+
+---
+
+## 📥 Way to access Models
+
+> Due to the large file size, trained models are hosted on Google Drive:
+
+📁 **[Download Models from Google Drive](https://drive.google.com/your_model_link_here)**  
+_(Replace the above link with your actual shared Google Drive link)_
+
+---
+
+## 📈 Performance Metrics
+
+- **Loss Function:** Categorical Cross-Entropy  
+- **Optimizer:** Adam  
+  - Learning Rate: `1e-4` or `1e-5` depending on the model  
+- **Evaluation Metrics:** Accuracy, Confusion Matrix, ROC AUC  
+
+### ✅ Test Results
+
+```bash
+================ Model Performance Summary ================
+
+Model: VGG19
+Test Accuracy   : 88.97%
+Test Loss       : 0.2819
+
+Model: Xception
+Test Accuracy   : 89.61%
+Test Loss       : 0.2174
+
+Model: InceptionResNetV2
+Test Accuracy   : 89.58%
+Test Loss       : 0.2692
+
+Model: DenseNet121
+Test Accuracy   : 93.88%
+Test Loss       : 0.1867
+
+Model: InceptionV3
+Test Accuracy   : 89.64%
+Test Loss       : 0.2136
+
+===========================================================
+
