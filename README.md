@@ -112,25 +112,25 @@ _(Replace the above link with your actual shared Google Drive link)_
 
 ================ Model Performance Summary ================
 
--Model: VGG19
--Test Accuracy   : 88.97%
--Test Loss       : 0.2819
+- Model: VGG19
+ - Test Accuracy   : 88.97%
+ - Test Loss       : 0.2819
 
--Model: Xception
--Test Accuracy   : 89.61%
--Test Loss       : 0.2174
+- Model: Xception
+ - Test Accuracy   : 89.61%
+ - Test Loss       : 0.2174
 
--Model: InceptionResNetV2
--Test Accuracy   : 89.58%
--Test Loss       : 0.2692
+- Model: InceptionResNetV2
+ - Test Accuracy   : 89.58%
+ - Test Loss       : 0.2692
 
--Model: DenseNet121
--Test Accuracy   : 93.88%
--Test Loss       : 0.1867
+- Model: DenseNet121
+ - Test Accuracy   : 93.88%
+ - Test Loss       : 0.1867
 
--Model: InceptionV3
--Test Accuracy   : 89.64%
--Test Loss       : 0.2136
+- Model: InceptionV3
+ - Test Accuracy   : 89.64%
+ - Test Loss       : 0.2136
 
 ===========================================================
 
